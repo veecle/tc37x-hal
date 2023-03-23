@@ -1,0 +1,16 @@
+[package]
+name = "tc37x-hal"
+version = "0.1.0"
+edition = "2021"
+authors = ["daniel@veecle.io", "..."]
+description = "A generic serialization/deserialization framework"
+documentation = "https://docs.rs/serde"
+homepage = "https://serde.rs"
+license = "Apache-2.0"
+
+[dependencies]
+tc37x-rt = { path = "../tc37x-rt" }
+tc37x-pac = { path = "../tc37x-pac", features = ["src", "stm0", "stm1", "stm2"]}
+bitfield-struct = "0.3.2"
+embedded-hal = "0.2.7"
+defmt = "0.3.2"
