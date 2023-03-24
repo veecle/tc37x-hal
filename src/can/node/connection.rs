@@ -1,5 +1,7 @@
 //! See https://www.infineon.com/dgdl/Infineon-AURIX_TC3xx_Part2-UserManual-v02_00-EN.pdf?fileId=5546d462712ef9b701717d35f8541d94#%5B%7B%22num%22%3A10218%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C42%2C643%2Cnull%5D
-
+//!
+//! Example coding on PIN configuration with some basic sematic control enforced
+//! by types
 use core::marker::PhantomData;
 
 use tc37x_pac::{PORT_15, PORT_20};
@@ -15,7 +17,6 @@ use super::{CanNode, InConfiguration};
 
 mod states {
     use core::marker::PhantomData;
-
     use super::CanPin;
 
     pub struct PinConnected<P: CanPin> {

@@ -1,3 +1,6 @@
+//!
+//! Transmit side for a CAN module
+//! 
 use core::marker::PhantomData;
 
 use tc37x_pac::can0;

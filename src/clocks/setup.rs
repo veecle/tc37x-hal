@@ -9,7 +9,9 @@ use crate::clocks::{
 
 use super::config;
 
+/// Trait to be implemented by peripherals that can configure the clocks
 pub trait SetupClocks {
+    /// Given a configuration, setup the clocks
     fn setup(&self, clocks: config::Clocks) -> Result<(), ()>;
 }
 

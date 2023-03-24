@@ -45,7 +45,7 @@ impl<'a, M: CanModuleRAM> NodeMemoryBuilder<'a, M> {
         }
     }
 
-    /// Create a sequence of elements from the stilll available memory. This effectively
+    /// Create a sequence of elements from the still available memory. This effectively
     /// reserves (at least) `size_of(T) * num` bytes. The resulting array will be
     /// aligned according to T
     ///

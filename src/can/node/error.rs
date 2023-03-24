@@ -1,3 +1,6 @@
+//!
+//! Basic error register access for CAN
+//!
 use core::fmt::Debug;
 use defmt::{Debug2Format, Format};
 use tc37x_pac::can0::node::psr::ACT_A;

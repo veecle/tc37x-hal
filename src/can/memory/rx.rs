@@ -1,3 +1,6 @@
+//!
+//! Helper structure for RXFrame memory descriptor
+//! 
 use bitfield_struct::bitfield;
 use defmt::Format;
 

@@ -24,14 +24,12 @@ pub struct CanModule0<'r, Node0, Node1> {
 /// States tracking the availability of a CAN node within a module
 mod states {
     pub struct Available;
-
     pub struct Taken;
 }
 pub use states::*;
 
 mod mem {
     use crate::can::{CanModule, CanModuleRAM};
-
     use super::CanModule0;
 
     impl<'r, Node0, Node1> CanModule for CanModule0<'r, Node0, Node1> {
@@ -52,6 +50,9 @@ mod mem {
 }
 pub use mem::*;
 
+//
+// Only run this if the module is not taken
+//
 impl<'r> CanModule0<'r, Available, Available> {
     /// New from peripherals
     pub fn new(p: &'r mut CAN0) -> Self {
@@ -70,6 +71,7 @@ impl<'r> CanModule0<'r, Available, Available> {
     }
 }
 
+// 
 impl<'r, N1> CanModule0<'r, Available, N1> {
     pub fn node0(
         self,

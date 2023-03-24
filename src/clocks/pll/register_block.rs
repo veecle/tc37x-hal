@@ -16,6 +16,7 @@ pub struct SystemPLL<'r> {
 }
 
 impl<'r> SystemPLL<'r> {
+    /// A new SystemPLL from peripherals
     pub fn new(p: &'r Peripherals) -> Self {
         SystemPLL {
             syspllcon0: &p.SCU.syspllcon0,
@@ -49,9 +50,9 @@ impl<'r> SystemPLL<'r> {
     /// Turn off the system PLL
     ///
     /// # Safety
-    /// Turning of the system PLL can make access to memory/registers that depend
-    /// on this clock undefined behavior. The user must make sure that the system PLL is not
-    /// used anywhere else, e.g. by selecting the backup clock as an input for
+    /// Turning off the system PLL can make access to memory/registers that depend
+    /// on this clock undefined behavior. The user must make sure that the system PLL 
+    /// is not used anywhere else, e.g. by selecting the backup clock as an input for
     /// the clock distribution
     unsafe fn off(&self) -> Result<&Self, ()> {
         defmt::trace!("SystemPLL -> OFF");
@@ -88,9 +89,7 @@ impl<'r> SystemPLL<'r> {
     /// Configure and wait the k-divider
     fn configure_k(&self, k2: u8) -> Result<&Self, ()> {
         wait(|| self.syspllstat.read().k2rdy().bit_is_set())?;
-
         self.syspllcon1.modify(|_, w| w.k2div().variant(k2));
-
         wait(|| self.syspllstat.read().k2rdy().bit_is_set())?;
 
         Ok(self)
@@ -101,7 +100,7 @@ impl<'r> SystemPLL<'r> {
     /// # Safety
     /// This temporarily turns of the system PLL, and potentially changes the frequency.
     /// This means that access to entities that are configured to depend on this clock
-    /// will show undefined behvior. The user must configure the CCU to
+    /// will show undefined behavior. The user must configure the CCU to
     /// a backup clock before calling this function.
     pub unsafe fn initial_configuration(&self, config: &SysPllConfig) -> Result<(), ()> {
         self.off()?.configure_pn(config)?.on()?;
@@ -109,7 +108,7 @@ impl<'r> SystemPLL<'r> {
         Ok(())
     }
 
-    /// Throttle PLL in steps?
+    /// Throttle PLL in steps? Hardcoded
     pub fn throttle(&self, config: &SysPllConfig) -> Result<&Self, ()> {
         for step in (config.k2..SysPllConfig::k2_max()).rev() {
             defmt::trace!("PLL Throttle K -> {}", step);
@@ -133,6 +132,7 @@ pub struct PeripheralPLL<'r> {
 }
 
 impl<'r> PeripheralPLL<'r> {
+    /// A new PeripheralPLL from peripherals
     pub fn new(p: &'r Peripherals) -> Self {
         PeripheralPLL {
             perpllcon0: &p.SCU.perpllcon0,
@@ -207,7 +207,6 @@ impl<'r> PeripheralPLL<'r> {
         );
         defmt::flush();
 
-        // TODO: We should implement throttling here as well
         let r = self.perpllstat.read();
         wait(|| r.k2rdy().bit_is_set() && r.k3rdy().bit_is_set())?;
         self.perpllcon1
