@@ -1,6 +1,6 @@
 //!
 //! Transmit side for a CAN module
-//! 
+//!
 use core::marker::PhantomData;
 
 use tc37x_pac::can0;
@@ -104,6 +104,14 @@ pub enum TransmitError {}
 impl<'r, 'mem, C: Connected, B: CanBuffer, R, M: CanModule>
     CanNode<'r, C, Running, TxDedicated<'mem, B, M::RAM>, R, M>
 {
+    pub fn with_transmit_buffer<S, F: FnOnce(TransmitBuffer<'_, B, Uninitialized, M::RAM>) -> S>(
+        &mut self,
+        buffer_consume: F,
+    ) -> Option<S> {
+        let buffer = self.acquire_transmit_buffer()?;
+        Some(buffer_consume(buffer))
+    }
+
     pub fn acquire_transmit_buffer<'a>(
         &'a mut self,
     ) -> Option<TransmitBuffer<'a, B, Uninitialized, M::RAM>>
