@@ -51,7 +51,7 @@ impl<'r> SystemPLL<'r> {
     ///
     /// # Safety
     /// Turning off the system PLL can make access to memory/registers that depend
-    /// on this clock undefined behavior. The user must make sure that the system PLL 
+    /// on this clock undefined behavior. The user must make sure that the system PLL
     /// is not used anywhere else, e.g. by selecting the backup clock as an input for
     /// the clock distribution
     unsafe fn off(&self) -> Result<&Self, ()> {

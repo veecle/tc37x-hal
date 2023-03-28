@@ -1,6 +1,6 @@
 //!
 //! Helper structure for TXFrame memory descriptor
-//! 
+//!
 use bitfield_struct::bitfield;
 use defmt::Format;
 

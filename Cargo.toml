@@ -2,10 +2,9 @@
 name = "tc37x-hal"
 version = "0.1.0"
 edition = "2021"
-authors = ["daniel@veecle.io", "..."]
-description = "A generic serialization/deserialization framework"
-documentation = "https://docs.rs/serde"
-homepage = "https://serde.rs"
+authors = ["Veeclers"]
+description = "Basic HAL for Aurix TC375"
+homepage = "https://www.veecle.io"
 license = "Apache-2.0"
 
 [dependencies]

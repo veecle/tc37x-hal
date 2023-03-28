@@ -86,7 +86,7 @@ impl PeripheralPllConfig {
     pub fn effective_k3(&self) -> u8 {
         self.k3 + 1
     }
-    
+
     /// Return the actual value of the divider, and not the one stored in the register
     pub fn pre_k3_divider(&self) -> f32 {
         if self.k_bypass {

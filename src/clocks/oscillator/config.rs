@@ -1,5 +1,4 @@
-
-/// Stores possible configuration for the oscillator 
+/// Stores possible configuration for the oscillator
 pub struct Oscillator {
     pub(super) oscval: u8,
 }

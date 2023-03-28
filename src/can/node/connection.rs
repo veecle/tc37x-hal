@@ -16,8 +16,8 @@ use self::states::{
 use super::{CanNode, InConfiguration};
 
 mod states {
-    use core::marker::PhantomData;
     use super::CanPin;
+    use core::marker::PhantomData;
 
     pub struct PinConnected<P: CanPin> {
         marker: PhantomData<P>,

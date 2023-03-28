@@ -29,8 +29,8 @@ mod states {
 pub use states::*;
 
 mod mem {
-    use crate::can::{CanModule, CanModuleRAM};
     use super::CanModule0;
+    use crate::can::{CanModule, CanModuleRAM};
 
     impl<'r, Node0, Node1> CanModule for CanModule0<'r, Node0, Node1> {
         type RAM = CanModule0RAM;
@@ -71,7 +71,7 @@ impl<'r> CanModule0<'r, Available, Available> {
     }
 }
 
-// 
+//
 impl<'r, N1> CanModule0<'r, Available, N1> {
     pub fn node0(
         self,

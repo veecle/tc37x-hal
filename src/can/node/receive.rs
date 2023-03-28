@@ -1,6 +1,6 @@
 //!
 //! Receive side for a CAN module
-//! 
+//!
 use tc37x_pac::can0::node::gfc;
 
 use crate::can::{
