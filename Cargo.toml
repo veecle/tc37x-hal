@@ -8,8 +8,8 @@ homepage = "https://www.veecle.io"
 license = "Apache-2.0"
 
 [dependencies]
-tc37x-rt = { path = "../tc37x-rt" }
-tc37x-pac = { path = "../tc37x-pac", features = ["src", "stm0", "stm1", "stm2"]}
+tc37x-rt = { git = "https://github.com/veecle/tc37x-rt.git", branch = "use-git-dependencies" }
+tc37x-pac = { git = "https://github.com/veecle/tc37x-pac.git", features = ["src", "stm0", "stm1", "stm2"]}
 bitfield-struct = "0.3.2"
 embedded-hal = "0.2.7"
 defmt = "0.3.2"
